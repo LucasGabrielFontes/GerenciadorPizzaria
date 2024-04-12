@@ -9,7 +9,7 @@ public class TelaCadastraCliente extends javax.swing.JFrame {
     public JFrame telaControle;
     
     public TelaCadastraCliente(JFrame telaControle) {
-        initComponents();
+        initComponents(telaControle);
         setLocationRelativeTo(null); // Centraliza a janela na tela
         setResizable(false); // Desabilita o redimensionamento da janela
         this.telaControle = telaControle;
@@ -17,7 +17,7 @@ public class TelaCadastraCliente extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(JFrame telaControle) {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
