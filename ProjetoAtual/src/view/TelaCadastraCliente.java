@@ -10,7 +10,7 @@ public class TelaCadastraCliente extends javax.swing.JFrame {
     public JFrame telaControle;
     
     public TelaCadastraCliente(JFrame telaControle) {
-        initComponents(telaControle);
+        initComponents();
         setLocationRelativeTo(null); // Centraliza a janela na tela
         setResizable(false); // Desabilita o redimensionamento da janela
         this.telaControle = telaControle;
@@ -18,7 +18,7 @@ public class TelaCadastraCliente extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents(JFrame telaControle) {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -112,6 +112,7 @@ public class TelaCadastraCliente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean clienteJaExiste(String telefone) {
@@ -130,6 +131,17 @@ public class TelaCadastraCliente extends javax.swing.JFrame {
         String rua = txtfRua.getText();
         String numero = txtfNumero.getText();
 
+        if (!telefone.matches("\\d*")) {
+            // Exibe uma mensagem de erro
+            JOptionPane.showMessageDialog(null, "Por favor, insira apenas números no telefone.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (!cep.matches("\\d*")) {
+            JOptionPane.showMessageDialog(null, "Por favor, insira apenas números no CEP.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         if (clienteJaExiste(telefone)) {
             JOptionPane.showMessageDialog(this, "Este número de telefone já está cadastrado!", "Erro", JOptionPane.ERROR_MESSAGE);
             return; // Impede a adição do cliente

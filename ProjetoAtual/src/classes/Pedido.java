@@ -58,9 +58,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + "numPedido=" + numPedido + ", telefone=" + telefone + ", codigoPizza=" + codigoPizza + ", estado=" + estado + '}';
-    }
-    
-    
+        return String.format("*Pedido %d*: Telefone Cliente: %s  ||  Código Pizza: %s  ||  Estado Pedido: %s", numPedido, telefone, codigoPizza, estado);
+    } 
     
 }

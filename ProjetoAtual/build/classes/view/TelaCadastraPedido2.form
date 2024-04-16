@@ -28,13 +28,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNumPedido1" min="-2" pref="137" max="-2" attributes="0"/>
                           <Component id="txtCodigo" min="-2" pref="137" max="-2" attributes="0"/>
                           <Component id="txtTelefone" min="-2" pref="137" max="-2" attributes="0"/>
                       </Group>
@@ -61,12 +57,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNumPedido1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -95,14 +86,6 @@
         <Property name="text" type="java.lang.String" value="Cadastro Pedido"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="20" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="N&#xfa;mero do pedido: "/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -118,11 +101,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="C&#xf3;digo da pizza: "/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNumPedido1">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumPedido1ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCodigo">
       <Events>

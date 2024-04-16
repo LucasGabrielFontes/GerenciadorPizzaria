@@ -23,6 +23,7 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
      * Creates new form TelaCadastraPedido2
      */
     
+    public int numPedido = 0;
     public JFrame telaFuncionario;
     
     public TelaCadastraPedido2(JFrame telaFuncionario) {
@@ -43,10 +44,8 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtNumPedido1 = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
         txtTelefone = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
@@ -57,20 +56,11 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 30)); // NOI18N
         jLabel2.setText("Cadastro Pedido");
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel4.setText("Número do pedido: ");
-
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         jLabel6.setText("Telefone do cliente:");
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         jLabel7.setText("Código da pizza: ");
-
-        txtNumPedido1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumPedido1ActionPerformed(evt);
-            }
-        });
 
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,12 +99,9 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel4))
-                        .addGap(40, 40, 40)
+                        .addComponent(jLabel6)
+                        .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNumPedido1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -134,11 +121,7 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jLabel2)
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtNumPedido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(134, 134, 134)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -155,10 +138,6 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNumPedido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumPedido1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumPedido1ActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
@@ -190,10 +169,7 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
     
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         
-        String numPedidoStr = txtNumPedido1.getText();
         String codigo = txtCodigo.getText(); // Obtenha o texto do campo txtCodigo
-        int codigoint;
-        int numPedido;
         String telefone = txtTelefone.getText();
         String codigoPizza = txtCodigo.getText();
 
@@ -208,30 +184,13 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
         } else {
             // Se o cliente e a pizza existirem, o pedido pode ser registrado
             // Código para registrar o pedido...
-            
-                if (!numPedidoStr.isEmpty()) {
-                numPedido = Integer.parseInt(numPedidoStr); // Converta para int se não estiver vazio
-            } else {
-                // Exiba uma mensagem de erro se o campo estiver vazio
-                JOptionPane.showMessageDialog(null, "Digite um número de pedido!", "Erro", JOptionPane.ERROR_MESSAGE);
-                return; // Pare a execução do método se o campo estiver vazio
-            }
-
-            // Verifique se o campo txtCodigo não está vazio
-            if (!codigo.isEmpty()) {
-                codigoint = Integer.parseInt(codigo); // Converta para int se não estiver vazio
-            } else {
-                // Exiba uma mensagem de erro se o campo estiver vazio
-                JOptionPane.showMessageDialog(null, "Digite um código!", "Erro", JOptionPane.ERROR_MESSAGE);
-                return; // Pare a execução do método se o campo estiver vazio
-            }
 
             try {
-                Pedido pedido = new Pedido(numPedidoStr, telefone, codigo);
+                ++numPedido;
+                Pedido pedido = new Pedido(Integer.toString(numPedido), telefone, codigo);
                 TelaInicial.adicionaPedido(pedido);
                 // Limpar os campos após o cadastro
                 txtCodigo.setText("");
-                txtNumPedido1.setText("");
                 txtTelefone.setText("");
 
             } catch (IllegalArgumentException e) {
@@ -301,11 +260,9 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnVoltarInicial1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtNumPedido1;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }
