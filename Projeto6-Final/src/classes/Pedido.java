@@ -1,11 +1,12 @@
 package classes;
 
 public class Pedido {
-    public int numPedido;
-    public String telefone;
-    public String codigoPizza;
-    public EstadoPedido estado;
-    public enum EstadoPedido {
+    
+    private int numPedido;
+    private String telefone;
+    private String codigoPizza;
+    private EstadoPedido estado;
+    private enum EstadoPedido {
         ACEITO,
         ENTREGUE
     }

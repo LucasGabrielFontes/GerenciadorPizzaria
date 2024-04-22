@@ -1,6 +1,7 @@
 package classes;
       
 public class Pizza {
+
     private String codigo;
     private String nome;
     private String descricao;
@@ -61,8 +62,5 @@ public class Pizza {
     public void setValor(String valor) {
         this.valor = valor;
     }
-    
-    
-    
     
 }

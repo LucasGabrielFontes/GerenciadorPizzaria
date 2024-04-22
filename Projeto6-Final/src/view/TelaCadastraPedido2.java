@@ -56,29 +56,37 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnVoltarInicial1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 30)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 40)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("Cadastro Pedido");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 60, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         jLabel6.setText("Telefone do cliente:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         jLabel7.setText("Código da pizza: ");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, -1, -1));
 
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
             }
         });
+        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 137, -1));
 
         txtTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefoneActionPerformed(evt);
             }
         });
+        getContentPane().add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 137, -1));
 
         btnCadastrar.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         btnCadastrar.setText("Cadastrar");
@@ -87,14 +95,16 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, -1, -1));
 
         btnVoltarInicial1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        btnVoltarInicial1.setText("Voltar à tela de controle");
+        btnVoltarInicial1.setText("Voltar");
         btnVoltarInicial1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarInicial1ActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVoltarInicial1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, -1, -1));
 
         jButton3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jButton3.setText("Tela Pedido");
@@ -103,55 +113,11 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 267, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(257, 257, 257))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVoltarInicial1)
-                .addGap(39, 39, 39)
-                .addComponent(jButton3)
-                .addGap(36, 36, 36)
-                .addComponent(btnCadastrar)
-                .addGap(115, 115, 115))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel2)
-                .addGap(134, 134, 134)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar)
-                    .addComponent(jButton3)
-                    .addComponent(btnVoltarInicial1))
-                .addContainerGap(180, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoRedimensionada25.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 790, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -330,6 +296,7 @@ public class TelaCadastraPedido2 extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnVoltarInicial1;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
