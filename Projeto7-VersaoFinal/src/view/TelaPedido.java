@@ -70,7 +70,7 @@ public class TelaPedido extends javax.swing.JFrame {
 
     private void initComponents() {
 
-        PainelComImagem painelComImagem = new PainelComImagem("C:/Users/lucas/OneDrive/Documentos/MeuProjetos/ProjetoPOO/Projeto_-_FINAL/Projeto - FINAL/src/images/logoRedimensionada25.png");
+        PainelComImagem painelComImagem = new PainelComImagem("src/images/logoRedimensionada25.png");
         this.setContentPane(painelComImagem);
 
         jLabel1 = new javax.swing.JLabel();
