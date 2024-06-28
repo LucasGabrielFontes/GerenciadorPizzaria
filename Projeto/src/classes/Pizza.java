@@ -4,9 +4,9 @@ public class Pizza {
     private String codigo;
     private String nome;
     private String descricao;
-    private double valor;
+    private String valor;
 
-    public Pizza(String codigo, String nome, String descricao, double valor) {
+    public Pizza(String codigo, String nome, String descricao, String valor) {
         
         if (codigo == null || codigo.equals("")) {
             throw new IllegalArgumentException("código inválido");
@@ -20,7 +20,7 @@ public class Pizza {
             throw new IllegalArgumentException("descrição inválida");
         }
              
-        if (valor < 0) {
+        if (Double.parseDouble(valor) < 0) {
             throw new IllegalArgumentException("valor inválido");
         }
         
@@ -54,11 +54,11 @@ public class Pizza {
         this.descricao = descricao;
     }
 
-    public double getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
     

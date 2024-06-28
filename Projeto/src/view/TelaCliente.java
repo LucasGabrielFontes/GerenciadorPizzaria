@@ -57,6 +57,14 @@ public class TelaCliente extends javax.swing.JFrame {
                 return false;
             }
 
+            //Verifica se o telefone já existe
+            for (Cliente cliente : clientes) {
+                if (cliente.getTelefone().equals(value)) {
+                    JOptionPane.showMessageDialog(null, "Erro: Telefone já existe.");
+                    return false;
+                }
+            }
+
             // Verifica se o nome da coluna é "CEP" e o valor não possui 8 dígitos
             if (columnName.equals("CEP") && value.length() != 8) {
                 JOptionPane.showMessageDialog(null, "Erro: CEP deve ter 8 dígitos.");
@@ -77,7 +85,7 @@ public class TelaCliente extends javax.swing.JFrame {
 
             return super.stopCellEditing();
         }
-        }
+    }
         
         /**
          * Construtor da classe TelaCliente que recebe a tela de cadastro de cliente e a lista de clientes.
@@ -187,7 +195,7 @@ public class TelaCliente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableClientes = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -225,10 +233,10 @@ public class TelaCliente extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Excluir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -246,7 +254,7 @@ public class TelaCliente extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnExcluir)
                         .addGap(91, 91, 91))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -263,7 +271,7 @@ public class TelaCliente extends javax.swing.JFrame {
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(170, 170, 170)
-                        .addComponent(jButton2)))
+                        .addComponent(btnExcluir)))
                 .addGap(47, 47, 47)
                 .addComponent(jButton1)
                 .addContainerGap(119, Short.MAX_VALUE))
@@ -272,7 +280,7 @@ public class TelaCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         int selectedRow = jTableClientes.getSelectedRow();
         if (selectedRow >= 0) {
             int confirm = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja excluir este cliente?", "Confirmação de Exclusão", JOptionPane.YES_NO_OPTION);
@@ -297,15 +305,13 @@ public class TelaCliente extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Erro: Nenhum cliente selecionado.");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // Cria uma nova instância de TelaCadastraCliente
-        TelaCadastraCliente telaCadastraCliente = new TelaCadastraCliente(TelaCliente.this);
-        // Torna a TelaCadastraCliente visível
-        telaCadastraCliente.setVisible(true);
         // Torna a TelaCliente invisível
         setVisible(false);
+        // Torna a TelaCadastraCliente visível
+        telaCadastraCliente.setVisible(true);
     }
 
     public static void main(String args[]) {
@@ -335,8 +341,8 @@ public class TelaCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;

@@ -13,3 +13,7 @@
 *.form
 *.xml
 *.properties
+*.class
+*.form
+*.xml
+*.properties

@@ -12,12 +12,14 @@ import static view.TelaInicial.pizzas;
 public class TelaCadastroPizza extends javax.swing.JFrame {
 
     public JFrame telaControle;
+    public static String filePath;
     
     public TelaCadastroPizza(JFrame telaControle) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false); 
         this.telaControle = telaControle;
+        this.filePath = "";
     }
 
     @SuppressWarnings("unchecked")
@@ -215,7 +217,7 @@ public class TelaCadastroPizza extends javax.swing.JFrame {
                 BufferedWriter bw = new BufferedWriter(fw);
 
                 // Escrevendo os dados da nova pizza no arquivo
-                bw.write("Código: " + pizza.getCodigo() + ", Descrição: " + pizza.getDescricao() + ", Nome: " + pizza.getNome() + ", Valor: R$" + pizza.getValor());
+                bw.write("Código: " + pizza.getCodigo() + ", Nome: " + pizza.getNome() + ", Descricao: " + pizza.getDescricao() + ", Valor: R$" + pizza.getValor());
                 bw.newLine(); // Adiciona uma nova linha para a nova pizza
 
                 bw.close(); // Fecha o BufferedWriter
@@ -231,7 +233,7 @@ public class TelaCadastroPizza extends javax.swing.JFrame {
         String codigo = txtCodigo.getText();
         String descricao = txtDescricao.getText();
         String nome = txtNome.getText();
-        double valor = Double.parseDouble(txtValor.getValue().toString());
+        String valor = txtValor.getValue().toString();
         
         if (codigoJaExiste(codigo)) {
             JOptionPane.showMessageDialog(this, "Já existe uma pizza com esse código", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -272,7 +274,7 @@ public class TelaCadastroPizza extends javax.swing.JFrame {
             }
             
             // Caminho completo para o arquivo de pizzas
-            String filePath = directoryPath + "/pizzas.txt";
+            this.filePath = directoryPath + "/pizzas.txt";
             
             // Adiciona a nova pizza ao arquivo
             criarOuAtualizarArquivoPizzas(pizza, filePath);
