@@ -1,6 +1,8 @@
 package view;
 
+import classes.Cliente;
 import classes.Pedido;
+import classes.Pizza;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -11,7 +13,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
     public TelaFuncionario() {
         initComponents();
         setLocationRelativeTo(null); // Centraliza a janela na tela
-        setResizable(false); // Desabilita o redimensionamento da janela
+        setResizable(false);
+        // Desabilita o redimensionamento da janela
     }
 
     @SuppressWarnings("unchecked")
@@ -130,8 +133,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        TelaCadastraPedido1 telaCadastroPedido1 = new TelaCadastraPedido1(this);
-        telaCadastroPedido1.setVisible(true);
+        TelaCadastraPedido2 telaCadastroPedido2 = new TelaCadastraPedido2(this);
+        telaCadastroPedido2.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -1,8 +1,13 @@
 package view;
 
 import classes.Pizza;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static view.TelaInicial.pizzas;
 
 public class TelaCadastroPizza extends javax.swing.JFrame {
 
@@ -147,23 +152,125 @@ public class TelaCadastroPizza extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean codigoJaExiste (String codigo) {
+        
+        for (Pizza pizza: pizzas) {
+            
+            if (pizza.getCodigo().equals(codigo)) {
+                return true;
+            }
+            
+        }
+        
+        return false;
+        
+    }
+    
+    private boolean nomeJaExiste (String nome) {
+        
+        for (Pizza pizza: pizzas) {
+            
+            if (pizza.getNome().toLowerCase().equals(nome.toLowerCase())) {
+                return true;
+            }
+            
+        }
+        
+        return false;
+        
+    }
+    
+    private boolean descricaoJaExiste (String descricao) {
+        
+        for (Pizza pizza: pizzas) {
+            
+            if (pizza.getDescricao().toLowerCase().equals(descricao.toLowerCase())) {
+                return true;
+            }
+            
+        }
+        
+        return false;
+        
+    }
+    
+    private String directoryPath;
+    
+    // Método para criar ou atualizar o arquivo de clientes
+    private void criarOuAtualizarArquivoPizzas(Pizza pizza, String filePath) {
+            try {
+                FileWriter fw = new FileWriter(filePath, true); // O true no construtor FileWriter indica que iremos adicionar ao final do arquivo
+                BufferedWriter bw = new BufferedWriter(fw);
+
+                // Escrevendo os dados da nova pizza no arquivo
+                bw.write("Código: " + pizza.getCodigo() + ", Descrição: " + pizza.getDescricao() + ", Nome: " + pizza.getNome() + ", Valor: R$" + pizza.getValor());
+                bw.newLine(); // Adiciona uma nova linha para a nova pizza
+
+                bw.close(); // Fecha o BufferedWriter
+                fw.close(); // Fecha o FileWriter
+
+                System.out.println("Arquivo pizzas.txt atualizado com sucesso em: " + filePath);
+            } catch (IOException e) {
+                System.err.println("Erro ao atualizar o arquivo pizzas.txt: " + e.getMessage());
+            }
+     }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String codigo = txtCodigo.getText();
         String descricao = txtDescricao.getText();
         String nome = txtNome.getText();
         double valor = Double.parseDouble(txtValor.getValue().toString());
         
+        if (codigoJaExiste(codigo)) {
+            JOptionPane.showMessageDialog(this, "Já existe uma pizza com esse código", "Erro", JOptionPane.ERROR_MESSAGE);
+            return; // Impede a adição do cliente
+        }
         
+        if (nomeJaExiste(nome)) {
+            JOptionPane.showMessageDialog(this, "Já existe uma pizza com esse nome", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (descricaoJaExiste(descricao)) {
+            JOptionPane.showMessageDialog(this, "Já existe uma pizza com essa descrição", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
         try {
+            
             Pizza pizza = new Pizza(codigo, nome, descricao, valor);
             TelaInicial.adicionaPizza(pizza);
-            // Limpar os campos após o cadastro
+            
+            // Se o diretório ainda não foi selecionado, solicita ao usuário que escolha o diretório para salvar o arquivo
+            if (directoryPath == null || directoryPath.isEmpty()) {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("Salvar arquivo de pizzas");
+                fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+                // Exibe o seletor de diretório
+                int userSelection = fileChooser.showSaveDialog(this);
+
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    // Obtém o diretório selecionado pelo usuário
+                    directoryPath = fileChooser.getSelectedFile().getAbsolutePath();
+                } else {
+                    // Se o usuário cancelar a seleção do diretório, retorna sem fazer nada
+                    return;
+                }
+            }
+            
+            // Caminho completo para o arquivo de pizzas
+            String filePath = directoryPath + "/pizzas.txt";
+            
+            // Adiciona a nova pizza ao arquivo
+            criarOuAtualizarArquivoPizzas(pizza, filePath);
+            
+            // Limpa os campos de texto
             txtCodigo.setText("");
             txtDescricao.setText("");
             txtNome.setText("");
             txtValor.setValue(0.0);
-
+            
             // Exibir mensagem de "cadastro concluído"
             JOptionPane.showMessageDialog(this, "Cadastro concluído!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalArgumentException e) {

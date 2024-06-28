@@ -6,3 +6,6 @@
 *.properties
 *.xml
 *.class
+*.class
+*.form
+*.xml

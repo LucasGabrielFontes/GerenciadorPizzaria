@@ -1,15 +1,20 @@
 package view;
 
 import classes.Cliente;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static view.TelaInicial.clientes;
 
 public class TelaCadastraCliente extends javax.swing.JFrame {
 
     public JFrame telaControle;
     
     public TelaCadastraCliente(JFrame telaControle) {
-        initComponents(telaControle);
+        initComponents();
         setLocationRelativeTo(null); // Centraliza a janela na tela
         setResizable(false); // Desabilita o redimensionamento da janela
         this.telaControle = telaControle;
@@ -17,7 +22,7 @@ public class TelaCadastraCliente extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents(JFrame telaControle) {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -111,24 +116,99 @@ public class TelaCadastraCliente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean clienteJaExiste(String telefone) {
+        for (Cliente cliente: clientes) {
+            if (cliente.getTelefone().equals(telefone)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private String directoryPath;
+    
+    // Método para criar ou atualizar o arquivo de clientes
+    private void criarOuAtualizarArquivoClientes(Cliente cliente, String filePath) {
+            try {
+                FileWriter fw = new FileWriter(filePath, true); // O true no construtor FileWriter indica que iremos adicionar ao final do arquivo
+                BufferedWriter bw = new BufferedWriter(fw);
+
+                // Escrevendo os dados do novo cliente no arquivo
+                bw.write("Nome: " + cliente.getNome() + ", Telefone: " + cliente.getTelefone() + ", CEP: " + cliente.getCep() + ", Rua: " + cliente.getRua() + ", Número: " + cliente.getNumero());
+                bw.newLine(); // Adiciona uma nova linha para o novo cliente
+
+                bw.close(); // Fecha o BufferedWriter
+                fw.close(); // Fecha o FileWriter
+
+                System.out.println("Arquivo clientes.txt atualizado com sucesso em: " + filePath);
+            } catch (IOException e) {
+                System.err.println("Erro ao atualizar o arquivo clientes.txt: " + e.getMessage());
+            }
+     }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         String nome = txtfNome.getText();
         String telefone = txtfTelefone.getText();
         String cep = txtfCEP.getText();
         String rua = txtfRua.getText();
         String numero = txtfNumero.getText();
+    
+
+        if (!telefone.matches("\\d*")) {
+            // Exibe uma mensagem de erro
+            JOptionPane.showMessageDialog(null, "Por favor, insira apenas números no telefone.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!cep.matches("\\d*")) {
+            JOptionPane.showMessageDialog(null, "Por favor, insira apenas números no CEP.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (clienteJaExiste(telefone)) {
+            JOptionPane.showMessageDialog(this, "Este número de telefone já está cadastrado!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return; // Impede a adição do cliente
+        }
 
         try {
             Cliente cliente = new Cliente(nome, telefone, cep, rua, numero);
             TelaInicial.adicionaCliente(cliente);
+
+            // Se o diretório ainda não foi selecionado, solicita ao usuário que escolha o diretório para salvar o arquivo
+            if (directoryPath == null || directoryPath.isEmpty()) {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("Salvar arquivo de clientes");
+                fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+                // Exibe o seletor de diretório
+                int userSelection = fileChooser.showSaveDialog(this);
+
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    // Obtém o diretório selecionado pelo usuário
+                    directoryPath = fileChooser.getSelectedFile().getAbsolutePath();
+                } else {
+                    // Se o usuário cancelar a seleção do diretório, retorna sem fazer nada
+                    return;
+                }
+            }
+
+            // Caminho completo para o arquivo de clientes
+            String filePath = directoryPath + "/clientes.txt";
+
+            // Adiciona o novo cliente ao arquivo
+            criarOuAtualizarArquivoClientes(cliente, filePath);
+
+            // Limpa os campos de texto
             txtfCEP.setText("");
             txtfNome.setText("");
             txtfNumero.setText("");
             txtfRua.setText("");
             txtfTelefone.setText("");
-            
+
             JOptionPane.showMessageDialog(this, "Cadastro concluído!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalArgumentException e) {
             switch (e.getMessage()) {

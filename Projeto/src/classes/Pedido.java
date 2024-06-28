@@ -56,11 +56,17 @@ public class Pedido {
         this.codigoPizza = codigoPizza;
     }
 
-    @Override
-    public String toString() {
-        return "Pedido{" + "numPedido=" + numPedido + ", telefone=" + telefone + ", codigoPizza=" + codigoPizza + ", estado=" + estado + '}';
+    public EstadoPedido getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoPedido estado) {
+        this.estado = estado;
     }
     
-    
+    @Override
+    public String toString() {
+        return String.format("*Pedido %d*: Telefone Cliente: %s  ||  Código Pizza: %s  ||  Estado Pedido: %s", numPedido, telefone, codigoPizza, estado);
+    } 
     
 }
