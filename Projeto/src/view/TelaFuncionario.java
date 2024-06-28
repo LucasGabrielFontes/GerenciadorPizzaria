@@ -1,7 +1,13 @@
 package view;
 
-public class TelaFuncionario extends javax.swing.JFrame {
+import classes.Pedido;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import static view.TelaInicial.pedidos;
 
+public class TelaFuncionario extends javax.swing.JFrame {
+    
     public TelaFuncionario() {
         initComponents();
         setLocationRelativeTo(null); // Centraliza a janela na tela
@@ -46,6 +52,11 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButton3.setText("Visualizar Pedidos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButton4.setText("Cadastrar pizza");
@@ -60,16 +71,15 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(52, 52, 52)
-                                .addComponent(jLabel2)
-                                .addGap(71, 71, 71)))
-                        .addGap(224, 224, 224))
+                                .addComponent(jLabel2)))
+                        .addGap(225, 225, 225))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60)
@@ -97,7 +107,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -119,11 +129,13 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        this.dispose();
+        TelaCadastraPedido1 telaCadastroPedido1 = new TelaCadastraPedido1(this);
+        telaCadastroPedido1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            TelaCadastraCliente telacadastracliente = new TelaCadastraCliente();
+            TelaCadastraCliente telacadastracliente = new TelaCadastraCliente(this);
             this.dispose();
             telacadastracliente.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -131,10 +143,29 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        TelaCadastroPizza telaCadastroPizza = new TelaCadastroPizza();
+        // TelaCadastroPizza telaCadastroPizza = new TelaCadastroPizza();
+        // telaCadastroPizza.setVisible(true);
+        TelaCadastroPizza telaCadastroPizza = new TelaCadastroPizza(this);
         telaCadastroPizza.setVisible(true);
-        
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+  
+        this.dispose();
+        
+        DefaultListModel<String> modeloLista = new DefaultListModel<>();
+        
+        for (Pedido pedido: pedidos) {
+            modeloLista.addElement(pedido.toString());
+        }
+        
+        JList<String> lista = new JList<>(modeloLista);
+        
+        TelaVisualizaPedido telaVisualizaPedido = new TelaVisualizaPedido(lista, this);
+        
+        telaVisualizaPedido.setVisible(true);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
