@@ -9,3 +9,7 @@
 *.class
 *.form
 *.xml
+*.class
+*.form
+*.xml
+*.properties

@@ -14,15 +14,15 @@ public class Pedido {
     
 
     public Pedido(String numPedido, String telefone, String codigoPizza) {
-        if (numPedido == null || numPedido.isBlank() || Integer.parseInt(numPedido) < 1) {
+        if (numPedido == null || numPedido.trim().isEmpty() || Integer.parseInt(numPedido) < 1) {
             throw new IllegalArgumentException("Número do pedido inválido");
         }
 
-        if (telefone == null || telefone.isBlank() || telefone.length() != 11) {
+        if (telefone == null || telefone.trim().isEmpty() || telefone.length() != 11) {
             throw new IllegalArgumentException("Telefone inválido");
         }
 
-        if (codigoPizza == null || codigoPizza.isBlank() || Integer.parseInt(codigoPizza) < 0) {
+        if (codigoPizza == null || codigoPizza.trim().isEmpty() || Integer.parseInt(codigoPizza) < 0) {
             throw new IllegalArgumentException("Código inválido");
         }
         
