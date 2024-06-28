@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import classes.Cliente;
+import classes.Pedido;
 import classes.Pizza;
 import java.util.ArrayList;
 
@@ -9,7 +10,8 @@ public class TelaInicial extends javax.swing.JFrame {
     
     String senha = "admin";
     
-    public static ArrayList<Cliente> clientes = new ArrayList<Cliente>(); 
+    public static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    public static ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
     public static ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
     
     public static void adicionaCliente(Cliente cliente) {
@@ -18,6 +20,10 @@ public class TelaInicial extends javax.swing.JFrame {
     
     public static void adicionaPizza(Pizza pizza) {
         pizzas.add(pizza);
+    }
+    
+    public static void adicionaPedido(Pedido pedido) {
+        pedidos.add(pedido);
     }
     
     public TelaInicial() {
@@ -63,7 +69,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(231, Short.MAX_VALUE)
+                .addContainerGap(235, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -75,7 +81,7 @@ public class TelaInicial extends javax.swing.JFrame {
                             .addComponent(lblSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(btnLogar))))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +99,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogar))
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,12 +122,16 @@ public class TelaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void exibir () {
+        this.setVisible(true);
+    }
+    
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
 
         if (!String.valueOf(lblSenha.getPassword()).equals(senha)) {
             JOptionPane.showMessageDialog(null, "Senha inválida! Tente novamente.");
         } else {
-            this.dispose();
+            this.setVisible(false);
             TelaFuncionario telaFuncionario = new TelaFuncionario();
             telaFuncionario.setVisible(true);
         }
